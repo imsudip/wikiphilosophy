@@ -2,7 +2,7 @@
     package="com.example.wikipedia_hunt">
    <application
         android:label="wikipedia_hunt"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
