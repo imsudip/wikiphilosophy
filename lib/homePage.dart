@@ -5,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:wikipedia_hunt/api/wiki.dart';
 import 'package:wikipedia_hunt/styles.dart';
+import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
   final String link, title;
@@ -37,19 +38,20 @@ class _HomePageState extends State<HomePage> {
       textStyle: subtitle2,
       maxLines: context.screenWidth < 700 ? 6 : 12,
       overflow: TextOverflow.ellipsis,
-    ));
+    ).p4());
     if (!isEnd) rightList.add(Container());
     isend = isEnd;
     setState(() {});
-    scrollController.animateTo(
-        scrollController.position.maxScrollExtent + context.percentWidth * 25,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOut);
+    double offset =
+        scrollController.position.maxScrollExtent + context.percentWidth * 25;
+    offset += isend ? 400 : 0;
+    scrollController.animateTo(offset,
+        duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 
   Container _leftListWidget(String title) {
     return Container(
-      margin: EdgeInsets.only(bottom: 4),
+      margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
           color: title == "Philosophy" ? yellowLight : Colors.transparent,
           borderRadius: BorderRadius.circular(10)),
@@ -99,7 +101,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.chevron_left,
+            Ionicons.chevron_back,
             color: brown,
             size: 36,
           ),
@@ -120,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                               controller: scrollController,
                               isAlwaysShown: false,
                               child: timelineview())))),
-              isend ? 40.heightBox : 0.heightBox,
+              isend ? 10.heightBox : 0.heightBox,
               isend
                   ? Container(
                       height: 60,
@@ -142,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )
                   : Container(),
-              isend ? 40.heightBox : 0.heightBox,
+              isend ? 20.heightBox : 0.heightBox,
             ],
           ))),
     );
@@ -164,10 +166,15 @@ class _HomePageState extends State<HomePage> {
             ...List.generate(
                 rightList.length - 1,
                 (index) => Icon(
-                      Icons.article_outlined,
+                      Ionicons.reader_outline,
                       color: yellow,
                     ).p16()),
-            isend ? Text("🎉").px16() : CircularProgressIndicator().p16()
+            isend
+                ? Icon(
+                    Ionicons.sparkles,
+                    color: yellow,
+                  ).px16()
+                : CircularProgressIndicator().p16()
           ],
           imageHeight: 50,
           rightChildren: rightList,

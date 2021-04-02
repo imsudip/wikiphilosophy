@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import "package:velocity_x/velocity_x.dart";
 import 'package:wikipedia_hunt/homePage.dart';
 import 'package:wikipedia_hunt/styles.dart';
-
+import 'package:ionicons/ionicons.dart';
+import 'api/random.dart';
 import 'api/search.dart';
 
 class SearchPage extends StatefulWidget {
@@ -43,6 +44,11 @@ class _SearchPageState extends State<SearchPage> {
                   style: heading.copyWith(
                       color: black,
                       fontSize: context.screenWidth < 600 ? 48 : 60)),
+              10.heightBox,
+              Text(
+                "Every wikipedia article related to 'Philosophy'",
+                style: headline2,
+              ),
               20.heightBox,
               Container(
                   height: 55,
@@ -51,9 +57,20 @@ class _SearchPageState extends State<SearchPage> {
                     style: TextStyle(fontSize: 20),
                     textAlignVertical: TextAlignVertical.center,
                     placeholder: "Search any random topic...",
+                    prefix: Icon(Ionicons.search).pOnly(left: 24),
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        getRandomTopic(context);
+                      },
+                      icon: Icon(Ionicons.dice_outline, color: black),
+                    ).pOnly(right: 20),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30,
+                      horizontal: 6,
                     ),
+                    cursorColor: black,
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -72,16 +89,63 @@ class _SearchPageState extends State<SearchPage> {
                   ).px(40)),
               40.heightBox,
               Expanded(
-                  child: results == null
-                      ? Container()
-                      : isLoading
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
+                  child: isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : results == null
+                          ? _buildInfocontainer()
                           : _buildResults())
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  _buildInfocontainer() {
+    return Container(
+      constraints: BoxConstraints(maxWidth: 500, minWidth: 200),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Card(
+            color: yellowLight,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Column(
+              children: [
+                Icon(
+                  Ionicons.information_circle,
+                  color: brown,
+                  size: 42,
+                ),
+                Text(
+                  "Apparently if we click on the first link in any wikipedia article and continue doing that, we will end up on 'Philosophy' article page. This website just visualize the whole process.",
+                  style: subtitle3,
+                ),
+              ],
+            ).p(12),
+          ),
+          Card(
+            color: yellowLight,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Row(
+              children: [
+                Icon(
+                  Ionicons.dice_outline,
+                  color: brown,
+                  size: 32,
+                ),
+                Text(
+                  "    Tap on the dice to search a random article.",
+                  style: subtitle3,
+                ),
+              ],
+            ).p(12),
+          ),
+        ],
       ),
     );
   }
@@ -117,7 +181,7 @@ class _SearchPageState extends State<SearchPage> {
                   style: subtitle2,
                 ),
                 trailing: Icon(
-                  Icons.chevron_right,
+                  Ionicons.chevron_forward,
                   color: brown,
                 ),
               );
