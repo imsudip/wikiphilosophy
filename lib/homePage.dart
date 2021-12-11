@@ -120,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                           child: Scrollbar(
                               controller: scrollController,
-                              isAlwaysShown: false,
+                              // isAlwaysShown: true,
+                              showTrackOnHover: true,
                               child: timelineview())))),
               isend ? 10.heightBox : 0.heightBox,
               isend
@@ -197,7 +198,12 @@ class _HomePageState extends State<HomePage> {
                     Icons.article_outlined,
                     color: yellow,
                   ).p16()),
-          isend ? Text("🎉").px16() : CircularProgressIndicator().p16()
+          isend
+              ? Icon(
+                  Icons.filter_vintage_rounded,
+                  color: yellow,
+                ).p16()
+              : CircularProgressIndicator().p16()
         ],
         imageHeight: 50,
         rightChildren: rightList,

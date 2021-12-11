@@ -64,6 +64,9 @@ class _SearchPageState extends State<SearchPage> {
                           isLoading = true;
                         });
                         getRandomTopic(context);
+                        setState(() {
+                          isLoading = false;
+                        });
                       },
                       icon: Icon(Ionicons.dice_outline, color: black),
                     ).pOnly(right: 20),
@@ -91,7 +94,8 @@ class _SearchPageState extends State<SearchPage> {
               Expanded(
                   child: isLoading
                       ? Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(brown)),
                         )
                       : results == null
                           ? _buildInfocontainer()

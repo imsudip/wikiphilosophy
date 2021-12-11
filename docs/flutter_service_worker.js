@@ -6,16 +6,16 @@ const RESOURCES = {
   "assets/AssetManifest.json": "80a15063a8e16db82446847839a7261e",
 "assets/assets/wikiphilosophy.png": "7ef37570e1caae3b40d2768190ff3c82",
 "assets/FontManifest.json": "3ca64090b9da4a7c0a3988ea3cda93fc",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/NOTICES": "02c775b507d9f258eda5b6cbe0f498d6",
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/NOTICES": "856a4a46851d4150d26cfc7226af2997",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/ionicons/fonts/Ionicons.ttf": "0cdf2a324d5c21f08c7f446476aa2ee3",
 "favicon.png": "ebbb09fbf0deacb77a33368d84a3bcb2",
-"icons/icon-192.png": "15dc85e433d60567c9da94d0a3fce84e",
-"icons/icon-512.png": "f3fb69bc0ac9557ccb885b7d8a3c6ef8",
-"index.html": "3a30b420869687bd837b51d8f89ec883",
-"/": "3a30b420869687bd837b51d8f89ec883",
-"main.dart.js": "926ab488d52fe184df7a7db71bd9f982",
+"icons/Icon-192.png": "15dc85e433d60567c9da94d0a3fce84e",
+"icons/Icon-512.png": "f3fb69bc0ac9557ccb885b7d8a3c6ef8",
+"index.html": "b4a60cef0e3e7d38ed1a1d7cb359e9e1",
+"/": "b4a60cef0e3e7d38ed1a1d7cb359e9e1",
+"main.dart.js": "fb913fa4b9005872e652f2774d1ee64f",
 "manifest.json": "8902e41ca020a2fc2f35ea3bd3e86972",
 "version.json": "569f49477923e08102ec2761f0259598"
 };
@@ -35,7 +35,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
