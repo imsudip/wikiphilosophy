@@ -18,29 +18,38 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  google_fonts: ^2.0.0
-  http: ^0.13.1
-  velocity_x: ^2.6.1
-  timeline_widget: ^1.0.6
-  highlight_text: ^1.0.0
-  ionicons: ^0.1.2
+  cupertino_icons: ^1.0.5
+  google_fonts: ^3.0.1
+  http: ^0.13.5
+  velocity_x: ^3.6.0
+  timeline_widget: 
+    git:
+      url: https://github.com/imsudip/Timeline-Widget-Flutter.git
+      ref: master # branch name
+  highlight_text: ^1.5.0
+  eva_icons_flutter: ^3.1.0
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.9.0"
+  flutter_launcher_icons: ^0.10.0
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/wikiphilosophy.png"
+  web:
+    generate: true
+    image_path: "assets/wikiphilosophy.png"
+    background_color: "#DBC59E"
+    theme_color: "#552109"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

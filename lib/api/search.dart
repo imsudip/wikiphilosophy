@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<SearchResults> getSearchResults(String query) async {
-  String url = "https://imsudip-weather.herokuapp.com/wikisearch?q=";
+  String url = "https://so1krv.deta.dev/wikisearch?q=";
 
   var response = await http.get(Uri.parse(url + query));
   var jsonData = json.decode(response.body);

@@ -1,14 +1,14 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:velocity_x/velocity_x.dart";
 import 'package:wikipedia_hunt/homePage.dart';
 import 'package:wikipedia_hunt/styles.dart';
-import 'package:ionicons/ionicons.dart';
 import 'api/random.dart';
 import 'api/search.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+  SearchPage({Key? key}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -18,7 +18,7 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController _controller = TextEditingController();
   ScrollController scrollController = ScrollController();
   bool isLoading = false;
-  SearchResults results;
+  SearchResults? results;
   _fetchResults(String query) async {
     setState(() {
       isLoading = true;
@@ -41,9 +41,7 @@ class _SearchPageState extends State<SearchPage> {
             children: [
               20.heightBox,
               Text("WikiPhilosphy",
-                  style: heading.copyWith(
-                      color: black,
-                      fontSize: context.screenWidth < 600 ? 48 : 60)),
+                  style: heading.copyWith(color: black, fontSize: context.screenWidth < 600 ? 48 : 60)),
               10.heightBox,
               Text(
                 "Every wikipedia article related to 'Philosophy'",
@@ -57,7 +55,7 @@ class _SearchPageState extends State<SearchPage> {
                     style: TextStyle(fontSize: 20),
                     textAlignVertical: TextAlignVertical.center,
                     placeholder: "Search any random topic...",
-                    prefix: Icon(Ionicons.search).pOnly(left: 24),
+                    prefix: Icon(EvaIcons.search).pOnly(left: 24),
                     suffix: IconButton(
                       onPressed: () {
                         setState(() {
@@ -68,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
                           isLoading = false;
                         });
                       },
-                      icon: Icon(Ionicons.dice_outline, color: black),
+                      icon: Icon(EvaIcons.bulbOutline, color: black),
                     ).pOnly(right: 20),
                     padding: EdgeInsets.symmetric(
                       horizontal: 6,
@@ -77,10 +75,7 @@ class _SearchPageState extends State<SearchPage> {
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                              color: yellow.withOpacity(0.1),
-                              spreadRadius: 5.0,
-                              blurRadius: 20,
-                              offset: Offset(10, 3))
+                              color: yellow.withOpacity(0.1), spreadRadius: 5.0, blurRadius: 20, offset: Offset(10, 3))
                         ],
                         border: Border.all(color: yellowLight.withOpacity(0.5)),
                         color: yellowLight.withOpacity(0.2),
@@ -94,8 +89,7 @@ class _SearchPageState extends State<SearchPage> {
               Expanded(
                   child: isLoading
                       ? Center(
-                          child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(brown)),
+                          child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(brown)),
                         )
                       : results == null
                           ? _buildInfocontainer()
@@ -115,12 +109,11 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           Card(
             color: yellowLight,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
                 Icon(
-                  Ionicons.information_circle,
+                  EvaIcons.info,
                   color: brown,
                   size: 42,
                 ),
@@ -133,12 +126,11 @@ class _SearchPageState extends State<SearchPage> {
           ),
           Card(
             color: yellowLight,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Row(
               children: [
                 Icon(
-                  Ionicons.dice_outline,
+                  EvaIcons.bulbOutline,
                   color: brown,
                   size: 32,
                 ),
@@ -161,7 +153,7 @@ class _SearchPageState extends State<SearchPage> {
         controller: scrollController,
         child: ListView.separated(
             controller: scrollController,
-            itemCount: results.links.length,
+            itemCount: results!.links.length,
             separatorBuilder: (context, i) => Divider(
                   color: brown.withOpacity(0.3),
                 ),
@@ -172,20 +164,20 @@ class _SearchPageState extends State<SearchPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => HomePage(
-                                title: results.titles[i],
-                                link: results.links[i],
+                                title: results!.titles[i],
+                                link: results!.links[i],
                               )));
                 },
                 title: Text(
-                  results.titles[i],
+                  results!.titles[i],
                   style: subtitle1,
                 ),
                 subtitle: Text(
-                  results.links[i],
+                  results!.links[i],
                   style: subtitle2,
                 ),
                 trailing: Icon(
-                  Ionicons.chevron_forward,
+                  EvaIcons.arrowForward,
                   color: brown,
                 ),
               );

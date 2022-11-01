@@ -1,15 +1,15 @@
 import 'dart:math';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:timeline_widget/timeline_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:wikipedia_hunt/api/wiki.dart';
 import 'package:wikipedia_hunt/styles.dart';
-import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
-  final String link, title;
-  HomePage({Key key, this.link, this.title}) : super(key: key);
+  final String? link, title;
+  HomePage({Key? key, this.link, this.title}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -18,8 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Widget> leftList = [];
   List<Widget> rightList = [Container()];
-  _addNode(String title, String summary, String highlight,
-      {bool isEnd = false}) {
+  _addNode(String title, String summary, String highlight, {bool isEnd = false}) {
     leftList.add(_leftListWidget(title));
 
     rightList.removeLast();
@@ -32,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       ),
     };
     rightList.add(TextHighlight(
-      enableCaseSensitive: true,
+      // enableCaseSensitive: true,
       text: summary,
       words: words,
       textStyle: subtitle2,
@@ -42,19 +41,16 @@ class _HomePageState extends State<HomePage> {
     if (!isEnd) rightList.add(Container());
     isend = isEnd;
     setState(() {});
-    double offset =
-        scrollController.position.maxScrollExtent + context.percentWidth * 25;
+    double offset = scrollController.position.maxScrollExtent + context.percentWidth * 25;
     offset += isend ? 400 : 0;
-    scrollController.animateTo(offset,
-        duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+    scrollController.animateTo(offset, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 
   Container _leftListWidget(String title) {
     return Container(
       margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: title == "Philosophy" ? yellowLight : Colors.transparent,
-          borderRadius: BorderRadius.circular(10)),
+          color: title == "Philosophy" ? yellowLight : Colors.transparent, borderRadius: BorderRadius.circular(10)),
       child: Center(
         child: Text(
           title,
@@ -69,7 +65,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    leftList.add(_leftListWidget(widget.title));
+    leftList.add(_leftListWidget(widget.title!));
     _fetchWiki(widget.link);
   }
 
@@ -79,7 +75,7 @@ class _HomePageState extends State<HomePage> {
     scrollController.dispose();
   }
 
-  _fetchWiki(String link) async {
+  _fetchWiki(String? link) async {
     if (!mounted) return;
     if (link == "https://en.wikipedia.org/wiki/Philosophy") {
       _addNode("Philosophy", "In the end everything is connected to philosophy",
@@ -87,8 +83,8 @@ class _HomePageState extends State<HomePage> {
           isEnd: true);
       return;
     }
-    WikiScrape scrape = await getNextNode(link);
-    _addNode(scrape.title, scrape.summary, scrape.highlight, isEnd: false);
+    WikiScrape scrape = await getNextNode(link!);
+    _addNode(scrape.title!, scrape.summary!, scrape.highlight!, isEnd: false);
     _fetchWiki(scrape.link);
   }
 
@@ -101,7 +97,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Ionicons.chevron_back,
+            EvaIcons.arrowIosBack,
             color: brown,
             size: 36,
           ),
@@ -128,9 +124,7 @@ class _HomePageState extends State<HomePage> {
                   ? Container(
                       height: 60,
                       constraints: BoxConstraints(maxWidth: 400, minWidth: 150),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: yellow),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: yellow),
                       child: InkWell(
                         onTap: () {
                           Navigator.pop(context);
@@ -138,8 +132,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "Try another topic.",
-                            style:
-                                subtitle1.copyWith(fontSize: 24, color: white),
+                            style: subtitle1.copyWith(fontSize: 24, color: white),
                           ),
                         ),
                       ),
@@ -167,12 +160,12 @@ class _HomePageState extends State<HomePage> {
             ...List.generate(
                 rightList.length - 1,
                 (index) => Icon(
-                      Ionicons.reader_outline,
+                      EvaIcons.fileTextOutline,
                       color: yellow,
                     ).p16()),
             isend
                 ? Icon(
-                    Ionicons.sparkles,
+                    EvaIcons.sunOutline,
                     color: yellow,
                   ).px16()
                 : CircularProgressIndicator().p16()

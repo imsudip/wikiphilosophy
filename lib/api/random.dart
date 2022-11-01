@@ -10,8 +10,8 @@ Future<void> getRandomTopic(BuildContext context) async {
 
   var response = await http.get(Uri.parse(url));
   var jsonData = json.decode(response.body);
-  String link = jsonData['content_urls']['desktop']['page'];
-  String title = jsonData['title'];
+  String? link = jsonData['content_urls']['desktop']['page'];
+  String? title = jsonData['title'];
   Navigator.push(
       context,
       MaterialPageRoute(

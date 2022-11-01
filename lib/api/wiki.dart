@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<WikiScrape> getNextNode(String link) async {
-  String baseUrl = "https://imsudip-weather.herokuapp.com/wiki?link=";
+  String baseUrl = "https://so1krv.deta.dev/wiki?link=";
   print(baseUrl + link);
   var response = await http.get(Uri.parse(baseUrl + link));
 
@@ -10,18 +10,17 @@ Future<WikiScrape> getNextNode(String link) async {
   return wikiScrape;
 }
 
-WikiScrape wikiScrapeFromJson(String str) =>
-    WikiScrape.fromJson(json.decode(str));
+WikiScrape wikiScrapeFromJson(String str) => WikiScrape.fromJson(json.decode(str));
 
 String wikiScrapeToJson(WikiScrape data) => json.encode(data.toJson());
 
 class WikiScrape {
   WikiScrape({this.link, this.summary, this.title, this.highlight});
 
-  String link;
-  String summary;
-  String title;
-  String highlight;
+  String? link;
+  String? summary;
+  String? title;
+  String? highlight;
 
   factory WikiScrape.fromJson(Map<String, dynamic> json) => WikiScrape(
         link: json["link"].toString(),
@@ -30,10 +29,5 @@ class WikiScrape {
         highlight: json["highlight"].toString(),
       );
 
-  Map<String, dynamic> toJson() => {
-        "link": link,
-        "summary": summary,
-        "title": title,
-        "highlight": highlight
-      };
+  Map<String, dynamic> toJson() => {"link": link, "summary": summary, "title": title, "highlight": highlight};
 }
