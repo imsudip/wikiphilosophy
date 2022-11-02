@@ -1,3 +1,5 @@
+![wikiphilosophy](https://raw.githubusercontent.com/imsudip/wikiphilosophy/main/extra/banner.jpg)
+
 # WikiPhilosophy - Flutter Web
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
@@ -55,12 +57,12 @@ how to obtain the original software, should clearly STATE ALL CHANGES made and s
 Use of this software under any "non-free" license is NOT permitted.
 ```
 
-See the [GNU General Public License](https://github.com/imsudip/sunday_suspense/blob/master/LICENSE) for more details.
+See the [GNU General Public License](https://github.com/imsudip/wikiphilosophy/blob/main/LICENSE) for more details.
 
 ## Building from Source
 
 1. If you don't have Flutter SDK installed, please visit official [Flutter](https://flutter.dev/) site.
-2. Fetch latest source code from master branch.
+2. Fetch latest source code from main branch.
 
 ```
 git clone https://github.com/imsudip/wikiphilosophy.git
