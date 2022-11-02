@@ -7,12 +7,12 @@
 ![](https://img.shields.io/badge/Flutter_Version-3.3.6-9558B2.svg?style=for-the-badge&logo=Flutter)
 ![](https://img.shields.io/badge/Dart_Version-2.18.2-Blue.svg?style=for-the-badge&logo=Dart)
 
-### Visit the Web App [https://imsudip.github.io/wikiphilosophy/](https://imsudip.github.io/wikiphilosophy/)
+### Visit the Web App : [WikiPhilosophy](https://imsudip.github.io/wikiphilosophy/)
 
 WikiPhilosophy is a web application that allows you to search any word from wikipedia and connect it with philosophy. It searchs the article from wikipedia then connect the word with another one, and then another one, by picking the first hyperlink until it reaches Philosophy and shows you how they all relate to philosophy.
 
 This is a Frontend Web App using APIs
-For the the API Documentation visit [imsudip/api-python](https://github.com/imsudip/api-python)
+For the the API Documentation visit [imsudip/wikiphilosophy-backend-api](https://github.com/imsudip/wikiphilosophy-backend-api)
 
 ### Don't forget to :star: the repo
 
@@ -78,6 +78,6 @@ flutter run
 
 ## Contribute
 
-Contributions are welcome. Please read our [contributing guidelines](https://github.com/imsudip/sunday_suspense/blob/master/CONTRIBUTING.md) before contributing.
+Contributions are welcome. Please read our [contributing guidelines](https://github.com/imsudip/wikiphilosophy/blob/main/CONTRIBUTING.md) before contributing.
 
 ## Made with <span style="color: #E81224;">&hearts;</span> in Flutter
